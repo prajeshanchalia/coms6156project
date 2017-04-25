@@ -1,0 +1,16 @@
+<div class="vehicle-img-container">
+  <img class="vehicle-img" src="{{$ctrl.vehicle.imgurl}}" alt="Image Not Available">
+</div>
+
+<h1 class="detail-title">{{$ctrl.vehicle.year}} {{$ctrl.vehicle.make}} {{$ctrl.vehicle.model}}</h1>
+<h3 class="detail-subtitle">${{$ctrl.vehicle.price}}</h3>
+
+<p>{{$ctrl.vehicle.description}}</p>
+
+<div class="spec-title">Vehicle Specificiations</div>
+<div class="specs">
+  <dd>Exterior Color: {{$ctrl.vehicle.color}}</dd>
+  <dd>Miles: {{$ctrl.vehicle.miles}}</dd>
+</div>
+
+<a href="/app/#/vehicles"> Back to Showroom </a>

@@ -1,0 +1,25 @@
+<div ng-controller="TopCtrl">
+	<h1>Employees</h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>First Name</th>         
+        <th>Last Name</th>
+        <th>emailAddress</th>
+        <th>Account Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="user in users">
+        <td>{{user.firstName}}</td>
+        <td>{{user.lastName}}</td>
+        <td>{{user.emailAddress}}</td>
+        <td>{{user.usertype}}</td>
+        <td><button class="btn btn-primary" ng-click="makeEmployee(user._id)" ng-if="user.usertype=='customer'">Promote</button>
+			<button class="btn btn-primary" ng-click="makeCustomer(user._id)" ng-if="user.usertype=='employee'">Demote</button>
+      <button class="btn btn-danger" ng-click="makeAdmin(user._id)" >Make Admin</button>
+    </td>
+		</td>
+      </tr>
+    </tbody>
+   </div>

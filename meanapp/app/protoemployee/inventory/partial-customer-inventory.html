@@ -1,0 +1,29 @@
+<div ng-controller="TopCtrl" class="container">
+<h1>Inventory</h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Make</th>         
+        <th>Model</th>
+        <th>Model Year</th>
+        <th>Colour</th>
+        <th>MSRP</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="vehicle in inventory">
+        <td>{{vehicle.make}}</td>
+        <td>{{vehicle.model}}</td>
+        <td>{{vehicle.year}}</td>
+        <td>{{vehicle.color}}</td>
+        <td>{{vehicle.cost}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+
+<div ng-controller="bottomController">
+<!--     {{message1}}
+    {{message2}} -->
+</div>

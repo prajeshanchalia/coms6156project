@@ -1,0 +1,72 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}
+Dashboard
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{url_for('.static', filename='dashboard.css')}}">
+{% endblock %}
+
+{% block content %}
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{{ url_for('adminDash') }}">Admin Dashboard</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href=" {{ url_for('logout') }}">Log Out</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <h1 class="page-header" >Welcome, {{ name }}</h1>
+      <div class="col col-centered">
+          <center>
+              <form class="form-inline"  method="POST" action="/adminEmployeeDashboard">
+                <h2 class="form-inline">Employee Control Panel</h2>
+                  {{ form.hidden_tag() }}
+                  <div class="form-group col-lg-2">  {{ wtf.form_field(form.username) }} </div>
+                  <div class="form-group col-lg-2">  {{ wtf.form_field(form.password) }} </div>
+                  <div class="form-group col-lg-2">  {{ wtf.form_field(form.email) }} </div>
+                  <div class="form-group col-lg-2">  {{ wtf.form_field(form.phone) }} </div>
+                  <div class="form-group col-lg-2"><pre><button class="btn btn-primary btn-block" type="submit" value="add">Add Employee</button></pre></div>
+              </form>
+
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Employee Username</th>
+                    <th>Employee Email</th>
+                    <th>Employee Phone</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for element in result %}
+                    <tr>
+                      <form method="post" action="{{ url_for('deleteEmployee' , username=element.username) }}">
+                        <td>{{ element.username }}</td>
+                        <td>{{ element.email }}</td>
+                        <td>{{ element.phone }}</td>
+                        <td><button class="btn  btn-danger btn-block" type="submit" >Delete</button></td>
+                      </form>
+                    </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </center>
+      </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,32 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2">
+      <!--Sidebar content-->
+    </div>
+    <div class="container">
+      <h1>Employee Inventory Dashboard</h1>
+    <table class="table">
+    <thead>
+      <tr>
+        <th>Make</th>         
+        <th>Model</th>
+        <th>Year</th>
+        <th>Colour</th>
+        <th>MSRP</th>
+        <th>LOP</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="vehicle in $ctrl.vehicles | filter:$ctrl.query | orderBy:$ctrl.orderProp">
+        <td>{{vehicle.make}}</td>
+        <td>{{vehicle.model}}</td>
+        <td>{{vehicle.year}}</td>
+        <td>{{vehicle.color}}</td>
+        <td>{{vehicle.cost}}</td>
+         <td>{{vehicle.price}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+  </div>
+</div>

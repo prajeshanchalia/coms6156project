@@ -1,0 +1,83 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}
+Dashboard
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{url_for('.static', filename='dashboard.css')}}">
+{% endblock %}
+
+{% block content %}
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{{ url_for('adminDash') }} ">Admin Dashboard</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href=" {{ url_for('logout') }}">Log Out</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <h1 class="page-header" >Welcome, {{ name }}</h1>
+      <div class="col col-centered">
+          <center>
+              <form class="form-inline"  method="POST" action="/adminVehicleDashboard">
+                <h2 class="form-inline">Inventory Control Panel</h2>
+                  {{ form.hidden_tag() }}
+
+                  <div class="form-group col-lg-2">  {{ wtf.form_field(form.vehicleName) }} </div>
+                  <div class="form-group col-lg-2">  {{ wtf.form_field(form.vehicleModel) }} </div>
+                  <div class="form-group col-lg-2">  {{ wtf.form_field(form.vehicleYear) }} </div>
+                  <div class="form-group col-lg-2">  {{ wtf.form_field(form.vehicleColour) }} </div>
+                  <div class="form-group col-lg-2">  {{ wtf.form_field(form.vehicleMSRP) }} </div>
+                  <div class="form-group col-lg-2">  {{ wtf.form_field(form.vehicleLOP) }} </div>
+                  <div class="form-group"> <pre> <button class="btn btn-primary btn-block" type="submit" value="add">Add Vehicle</button></pre></div>
+              </form>
+
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Serial</th>
+                    <th>Make</th>
+                    <th>Model</th>
+                    <th>Year</th>
+                    <th>Colour</th>
+                    <th>MSRP</th>
+                    <th>LOP</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for element in result %}
+                    <tr>
+                      <form method="post" action="{{ url_for('deleteVehicle' , vehicleSerial=element.vehicleSerial) }}">
+                        <td>{{ element.vehicleSerial  }}</td>
+                        <td>{{ element.vehicleName }}</td>
+                        <td>{{ element.vehicleModel }}</td>
+                        <td>{{ element.vehicleYear }}</td>
+                        <td>{{ element.vehicleColour }}</td>
+                        <td>{{ element.vehicleMSRP }}</td>
+                        <td>{{ element.vehicleLOP }}</td>
+                        <td><button class="btn  btn-danger btn-block" type="submit" >Delete</button></td>
+                      </form>
+                    </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </center>
+      </div>
+    </div>
+{% endblock %}

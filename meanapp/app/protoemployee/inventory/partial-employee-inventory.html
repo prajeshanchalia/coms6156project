@@ -1,0 +1,44 @@
+<div ng-controller="TopCtrl">
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Make</th>         
+        <th>Model</th>
+        <th>Model Year</th>
+        <th>Color</th>
+        <th>MSRP</th>
+        <th>LOP</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><input class="form-control make" ng-model="vehicle.make"></td>
+        <td><input class="form-control model" ng-model="vehicle.model"></td>
+        <td><input class="form-control year" ng-model="vehicle.year"></td>
+        <td><input class="form-control color" ng-model="vehicle.color"></td>
+        <td><input class="form-control cost" ng-model="vehicle.cost"></td>
+        <td><input class="form-control price" ng-model="vehicle.price"></td>
+        
+        <td ng-hide="editMode"><button class="btn btn-primary" ng-click="addVehicle()">Add</button></td>
+      </tr>
+      <tr ng-repeat="vehicle in inventory">
+        <td>{{vehicle.make}}</td>
+        <td>{{vehicle.model}}</td>
+        <td>{{vehicle.year}}</td>
+        <td>{{vehicle.color}}</td>
+        <td>{{vehicle.cost}}</td>
+        <td>{{vehicle.price}}</td>
+        
+        <td><button class="btn btn-danger" ng-click="remove(vehicle._id)">X</button></td>
+        
+    </tbody>
+  </table>
+
+</div>
+
+<div ng-controller="bottomController">
+<!--     {{message1}}
+    {{message2}} -->
+</div>
