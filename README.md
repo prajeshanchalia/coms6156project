@@ -1,3 +1,5 @@
+Both the Applications require you to install Git for Source Code Management.
+
 The Mean App requires you to install and set up the MEAN 
 1. Mongo 
 2. Express 
